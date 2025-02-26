@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>UEG - Desenvolvimento Web 2025: Alunos</title>
+</head>
+
+<body>
+    <h1>Lista de alunos</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Matrícula</th>
+            <th>Ações</th>
+        </tr>
+
+        <tr th:each="aluno, iter: ${alunos}">
+            <td th:text="${aluno.nome}">Fulano de Tal</td>
+            <td th:text="${aluno.email}">fulano@ueg.br</td>
+            <td>
+                <ul>
+                    <li>
+                        <a th:href="@{'/alunos/editar/'+${iter.index}}" href="aluno-update.html">Editar</a>
+                    </li>
+                    <li>
+                        <a th:href="@{'/alunos/excluir/'+${iter.index}}" href="aluno-delete.html">Excluir</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
