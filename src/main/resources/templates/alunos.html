@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>UEG - Desenvolvimento Web 2025: Alunos</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h1 class="header center orange-text">Lista de Alunos</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+
+
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/alunos">Alunos</a></li>
+                <li><a href="/alunos/create">Novo Aluno</a></li>
+            </ul>
+
+            <br >
+            <form action="/alunos/busca" method="get">
+                <label>Nome para busca:</label>
+                <input type="text" name="nome">
+                <button class="waves-effect waves-light btn-small">Busca</button>
+            </form>
+
+            <br >
+
+            <table class="table">
+                <tr>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                    <th>Ações</th>
+                </tr>
+
+                <tr th:each="aluno, iter: ${alunos}">
+                    <td th:text="${aluno.nome}">
+
+                    </td>
+                    <td th:text="${aluno.email}">
+
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a class="waves-effect waves-light btn-small blue"
+                                th:href="@{'/alunos/update/telefone/' + ${aluno.id}}">Telefones</a>
+                            </li>
+                            <li>
+                                <a  class="waves-effect waves-light btn-small" th:href="@{'/alunos/update/' + ${aluno.id}}">Atualizar</a>
+                            </li>
+                            <li>
+                                <a  class="waves-effect waves-light btn-small red" th:href="@{'/alunos/delete/' + ${aluno.id}}">Excluir</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</body>
+
+</html>
